@@ -9,12 +9,12 @@ define(
                 isDefault: true
             }
         );
-        
+
         router.addRoute('secondary', 'view/secondary/secondary',
             {
                 preFetchView: true,
-                onLoadedCallback: function() {
-                    console.log('SECONDARY LOADED')
+                onFetchCallback: function() {
+                    console.log('SECONDARY FETCHED');
                 }
             }
         );

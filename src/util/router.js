@@ -39,7 +39,7 @@ define(
          * Define a new route by specifying a hash ID and a relative path to the view model.
          * Third parameter is an optional Options object that has two supported values:
          *      isDefault (boolean) - Marks this Route as being the default route in addition to the supplied hash ID
-         *      onLoadedCallback (function) - Called when the route view is first loaded
+         *      onFetchCallback (function) - Called when the route view is first loaded
          *      preFetchView (boolean) - Pre-fetches the view as opposed to loading it asynchronously when its route is called
          */
         Router.prototype.addRoute = function (hashId, viewPath, options) {
@@ -113,8 +113,8 @@ define(
 
                 self.loadedViews[hashId] = loadedView; // Save the view object
                 
-                if (options && options.onLoadedCallback) {
-                    (function() { options.onLoadedCallback(); })();
+                if (options && options.onFetchCallback) {
+                    (function() { options.onFetchCallback(); })();
                 }
 
                 if (loadedView.instance.onLoaded) {
