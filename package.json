@@ -1,0 +1,45 @@
+{
+  "name": "prologue",
+  "preferGlobal": true,
+  "version": "0.1.0",
+  "author": "Evan W. Isnor (leadhead9)",
+  "description": "Lightweight template for building Single-page Applications",
+  "contributors": [
+    {
+      "name": "Evan W. Isnor"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leadhead9/prologue.git"
+  },
+  "keywords": [
+    "spa",
+    "single page application",
+    "template",
+    "mvc",
+    "requirejs",
+    "ractivejs",
+    "grunt",
+    "bower",
+    "mocha",
+    "crossroads",
+    "hasher",
+    "abrest",
+    "lodash"
+  ],
+  "dependencies": {},
+  "engine": "node >= 0.10",
+  "license": "GPLv2",
+  "devDependencies": {
+    "bower": "~1.2.8",
+    "grunt": "0.x.x",
+    "grunt-contrib-clean": "0.5.x",
+    "grunt-contrib-copy": "0.4.x",
+    "grunt-contrib-jshint": "0.6.x",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-watch": "0.5.x",
+    "grunt-shell": "~0.6.1",
+    "grunt-contrib-connect": "~0.6.0"
+  }
+}

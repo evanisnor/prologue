@@ -1,0 +1,18 @@
+/*
+ * Default state for the app-view container.
+ * Sets a transition property for the fading effect.
+ */
+#app-view.loaded {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+}
+
+/*
+ * Properties to set on the app-view container while it is
+ * being changed.
+ */
+#app-view.loading {
+    opacity: 0;
+}
