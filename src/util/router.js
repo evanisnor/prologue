@@ -21,10 +21,11 @@ define(
          *      onLeaving()
          */
         var Router = function () {
+            this.loadedViews = {};
+            
             crossroads.bypassed.add(function(id) {
                 console.error('Unknown Hash ID: ' + id);
             });
-            this.loadedViews = {};
         };
 
         /*
@@ -128,7 +129,7 @@ define(
 
         /*
          * To be called when you have finished defining routes by calling 'addRoute'.
-         * Initializes Hasher to detect URL changes and sets the default hash to empty.
+         * Initializes Hasher to detect URL changes.
          */
         Router.prototype.done = function() {
             var self = this;
@@ -140,9 +141,6 @@ define(
                 self.onHashChange(newHash, oldHash);
             }); //parse hash changes
             hasher.init(); //start listening for history change
-             
-            //update URL fragment generating new history record
-            hasher.setHash('');
         };
 
         return Router;

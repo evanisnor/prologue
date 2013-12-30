@@ -1,6 +1,5 @@
 define(
-    ['util/router'
-    ],
+    ['util/router'],
 
     function (Router) {
         var router = new Router();
