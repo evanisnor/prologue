@@ -40,6 +40,7 @@ define(
          * Third parameter is an optional Options object that has two supported values:
          *      isDefault (boolean) - Marks this Route as being the default route in addition to the supplied hash ID
          *      onLoadedCallback (function) - Called when the route view is first loaded
+         *      preFetchView (boolean) - Pre-fetches the view as opposed to loading it asynchronously when its route is called
          */
         Router.prototype.addRoute = function (hashId, viewPath, options) {
             var self = this;
@@ -51,6 +52,10 @@ define(
                 self.addRoute('', viewPath, options);
             }
 
+            if (options && options.preFetchView) {
+                self.fetchView(hashId, viewPath, options);
+            }
+
             route.matched.add(function () {
                 // Set the class of the app-view container to 'loading' for CSS transitions.
                 document.getElementById('app-view').className = 'loading';
@@ -58,12 +63,7 @@ define(
                 if (self.loadedViews[hashId]) {
                     // If the view is already loaded for that hash ID, render it and call the onSwitchedTo method
                     setTimeout(function () {
-                        var loadedView = self.loadedViews[hashId];
-                        loadedView.instance.render(); // Render the view again
-                        if (loadedView.instance.onSwitchedTo) {
-                            // Call the view's onSwitchedTo() callback
-                            (function() { loadedView.instance.onSwitchedTo(); })();
-                        }
+                        self.renderExistingView(hashId);
 
                         // Set the class of the app-view container to 'loaded' so the view will appear
                         // and complete the CSS transition.
@@ -72,35 +72,7 @@ define(
                 }
                 else {
                     // If the route has been called by the user and the view hasn't been loaded, load it.
-                    require([viewPath], function (view) {
-                        // Check to see if the view is already loaded and is meant to be the default view
-                        var loadedView = _.find(self.loadedViews, function (view) {
-                            return view.path === viewPath && (options && options.isDefault);
-                        });
-
-                        // Create a new view instance if the view doesn't already exist
-                        if (!loadedView) {
-                            loadedView = {
-                                instance: new view('#app-view'),
-                                path: viewPath,
-                                options: options
-                            };
-                        }
-
-                        self.loadedViews[hashId] = loadedView; // Save the view object
-                        
-                        if (options && options.onLoadedCallback) {
-                            (function() { options.onLoadedCallback(); })();
-                        }
-
-                        if (loadedView.instance.onLoaded) {
-                            (function() { loadedView.instance.onLoaded(); })();
-                        }
-
-                        if (loadedView.instance.onSwitchedTo) {
-                            (function() { loadedView.instance.onSwitchedTo(); })();
-                        }
-
+                    self.fetchView(hashId, viewPath, options, function() {
                         // Set the class of the app-view container to 'loaded' so the view will appear
                         // and complete the CSS transition.
                         document.getElementById('app-view').className = 'loaded';
@@ -109,6 +81,54 @@ define(
 
             });
 
+        };
+
+        Router.prototype.renderExistingView = function (hashId) {
+            var self = this;
+            var loadedView = self.loadedViews[hashId];
+            loadedView.instance.render(); // Render the view
+            if (loadedView.instance.onSwitchedTo) {
+                // Call the view's onSwitchedTo() callback
+                (function() { loadedView.instance.onSwitchedTo(); })();
+            }
+        };
+
+        Router.prototype.fetchView = function (hashId, viewPath, options, onFetched) {
+            var self = this;
+
+            require([viewPath], function (view) {
+                // Check to see if the view is already loaded and is meant to be the default view
+                var loadedView = _.find(self.loadedViews, function (view) {
+                    return view.path === viewPath && (options && options.isDefault);
+                });
+
+                // Create a new view instance if the view doesn't already exist
+                if (!loadedView) {
+                    loadedView = {
+                        instance: new view('#app-view'),
+                        path: viewPath,
+                        options: options
+                    };
+                }
+
+                self.loadedViews[hashId] = loadedView; // Save the view object
+                
+                if (options && options.onLoadedCallback) {
+                    (function() { options.onLoadedCallback(); })();
+                }
+
+                if (loadedView.instance.onLoaded) {
+                    (function() { loadedView.instance.onLoaded(); })();
+                }
+
+                if (loadedView.instance.onSwitchedTo) {
+                    (function() { loadedView.instance.onSwitchedTo(); })();
+                }
+
+                if (onFetched) {
+                    onFetched();
+                }
+            });
         };
 
         /*
@@ -125,7 +145,7 @@ define(
             if (oldView && oldView.instance.onLeaving) {
                 oldView.instance.onLeaving();
             }
-        }
+        };
 
         /*
          * To be called when you have finished defining routes by calling 'addRoute'.
