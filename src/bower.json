@@ -6,7 +6,7 @@
   ],
   "description": "Lightweight template for building Single-page Applications",
   "main": "app.js",
-  "license": "GPLv2",
+  "license": "MIT",
   "private": true,
   "ignore": [
     "**/.*",

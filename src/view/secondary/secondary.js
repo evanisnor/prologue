@@ -18,13 +18,14 @@ define(
         
         view.prototype.onSwitchedTo = function () {
             console.log('Switched to: Secondary');
-        }
+        };
 
         view.prototype.onLeaving = function () {
             console.log('Leaving: Secondary');
         };
 
         view.prototype.render = function () {
+            console.log('> Rendering: Secondary');
             var ractive = new Ractive({
                 el: this.element,
                 template: SecondaryTemplate

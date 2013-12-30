@@ -30,7 +30,7 @@
   ],
   "dependencies": {},
   "engine": "node >= 0.10",
-  "license": "GPLv2",
+  "license": "MIT",
   "devDependencies": {
     "bower": "~1.2.8",
     "grunt": "0.x.x",

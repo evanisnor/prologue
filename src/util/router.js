@@ -9,7 +9,7 @@ define(
          *
          * Encapsulates Crossroads.js and renders Ractive views based on defined routes.
          * Asynchronously loads views as they're accessed by their hash ID, not as the routes
-         * are defined.
+         * are defined (unless specified to prefetch).
          *
          * View objects are not destroyed when a user navigates away from them, but are stored in
          * the 'loadedViews' object.
@@ -96,7 +96,7 @@ define(
         Router.prototype.fetchView = function (hashId, viewPath, options, onFetched) {
             var self = this;
 
-            require([viewPath], function (view) {
+            require([viewPath], function (View) {
                 // Check to see if the view is already loaded and is meant to be the default view
                 var loadedView = _.find(self.loadedViews, function (view) {
                     return view.path === viewPath && (options && options.isDefault);
@@ -105,10 +105,13 @@ define(
                 // Create a new view instance if the view doesn't already exist
                 if (!loadedView) {
                     loadedView = {
-                        instance: new view('#app-view'),
+                        instance: new View('#app-view'),
                         path: viewPath,
                         options: options
                     };
+                }
+                else {
+                    loadedView.instance.render();
                 }
 
                 self.loadedViews[hashId] = loadedView; // Save the view object

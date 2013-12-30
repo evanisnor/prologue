@@ -18,13 +18,14 @@ define(
         
         view.prototype.onSwitchedTo = function () {
             console.log('Switched to: Main');
-        }
+        };
 
         view.prototype.onLeaving = function () {
             console.log('Leaving: Main');
         };
 
         view.prototype.render = function () {
+            console.log('> Rendering: Main');
             var ractive = new Ractive({
                 el: this.element,
                 template: MainTemplate
