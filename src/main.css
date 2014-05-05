@@ -1,0 +1,26 @@
+/*
+ * apply a natural box layout model to all elements
+ * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ */
+*, *:before, *:after {
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+/*
+ * Default state for the route-view container.
+ * Sets a transition property for the fading effect.
+ */
+#route-view.loaded {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+}
+
+/*
+ * Properties to set on the route-view container while it is
+ * being changed.
+ */
+#route-view.loading {
+    opacity: 0;
+}

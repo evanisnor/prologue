@@ -19,11 +19,7 @@ define(
             }
         );
 
-        router.addRoute('foundation', 'view/foundation/foundation',
-            {
-                preFetchView: false
-            }
-        );
+        router.addRoute('foundation', 'view/foundation/foundation');
 
         router.done();
     }

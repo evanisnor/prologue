@@ -57,8 +57,8 @@ define(
             }
 
             route.matched.add(function () {
-                // Set the class of the app-view container to 'loading' for CSS transitions.
-                document.getElementById('app-view').className = 'loading';
+                // Set the class of the route-view container to 'loading' for CSS transitions.
+                document.getElementById('route-view').className = 'loading';
 
                 setTimeout(function() {
 
@@ -66,17 +66,17 @@ define(
                         // If the view is already loaded for that hash ID, render it and call the onSwitchedTo method
                         self.renderExistingView(hashId);
 
-                        // Set the class of the app-view container to 'loaded' so the view will appear
+                        // Set the class of the route-view container to 'loaded' so the view will appear
                         // and complete the CSS transition.
-                        document.getElementById('app-view').className = 'loaded';
+                        document.getElementById('route-view').className = 'loaded';
                         
                     }
                     else {
                         // If the route has been called by the user and the view hasn't been loaded, load it.
                         self.fetchView(hashId, viewPath, options, function() {
-                            // Set the class of the app-view container to 'loaded' so the view will appear
+                            // Set the class of the route-view container to 'loaded' so the view will appear
                             // and complete the CSS transition.
-                            document.getElementById('app-view').className = 'loaded';
+                            document.getElementById('route-view').className = 'loaded';
                         });
                     }
 
@@ -109,7 +109,7 @@ define(
                 // Create a new view instance if the view doesn't already exist
                 if (!loadedView) {
                     loadedView = {
-                        instance: new View('#app-view'),
+                        instance: new View('#route-view'),
                         path: viewPath,
                         options: options
                     };

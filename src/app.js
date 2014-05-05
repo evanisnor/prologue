@@ -33,12 +33,14 @@ requirejs.config({
 });
 
 requirejs(
-    ['routes',
-     'index',
+    ['main',
      'domReady!'
     ],
 
-    function () {
-
+    function (Main) {
+        var main = new Main('body');
+        main.onLoaded();
+        main.render();
+        require(['routes']);
     }
 );
