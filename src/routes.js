@@ -12,7 +12,7 @@ define(
 
         router.addRoute('secondary', 'view/secondary/secondary',
             {
-                preFetchView: true,
+                preFetchView: false,
                 onFetchCallback: function() {
                     console.log('SECONDARY FETCHED');
                 }

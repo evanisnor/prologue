@@ -60,24 +60,27 @@ define(
                 // Set the class of the app-view container to 'loading' for CSS transitions.
                 document.getElementById('app-view').className = 'loading';
 
-                if (self.loadedViews[hashId]) {
-                    // If the view is already loaded for that hash ID, render it and call the onSwitchedTo method
-                    setTimeout(function () {
+                setTimeout(function() {
+
+                    if (self.loadedViews[hashId]) {
+                        // If the view is already loaded for that hash ID, render it and call the onSwitchedTo method
                         self.renderExistingView(hashId);
 
                         // Set the class of the app-view container to 'loaded' so the view will appear
                         // and complete the CSS transition.
                         document.getElementById('app-view').className = 'loaded';
-                    }, 1);
-                }
-                else {
-                    // If the route has been called by the user and the view hasn't been loaded, load it.
-                    self.fetchView(hashId, viewPath, options, function() {
-                        // Set the class of the app-view container to 'loaded' so the view will appear
-                        // and complete the CSS transition.
-                        document.getElementById('app-view').className = 'loaded';
-                    });
-                }
+                        
+                    }
+                    else {
+                        // If the route has been called by the user and the view hasn't been loaded, load it.
+                        self.fetchView(hashId, viewPath, options, function() {
+                            // Set the class of the app-view container to 'loaded' so the view will appear
+                            // and complete the CSS transition.
+                            document.getElementById('app-view').className = 'loaded';
+                        });
+                    }
+
+                }, 100);
 
             });
 
@@ -85,6 +88,7 @@ define(
 
         Router.prototype.renderExistingView = function (hashId) {
             var self = this;
+
             var loadedView = self.loadedViews[hashId];
             loadedView.instance.render(); // Render the view
             if (loadedView.instance.onSwitchedTo) {
