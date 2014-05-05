@@ -1,10 +1,10 @@
 define(
     ['ractive',
-     'text!main.html',
-     'css!main.css'
+     'text!root.html',
+     'css!root.css'
     ],
 
-    function (Ractive, MainTemplate) {
+    function (Ractive, RootTemplate) {
 
         var view = function (element) {
             this.element = element;
@@ -13,14 +13,14 @@ define(
         };
 
         view.prototype.onLoaded = function () {
-            console.log('Loaded: Main');
+            console.log('Loaded: Root');
         };
 
         view.prototype.render = function () {
-            console.log('> Rendering: Main');
+            console.log('> Rendering: Root');
             var ractive = new Ractive({
                 el: this.element,
-                template: MainTemplate
+                template: RootTemplate
             });
 
         };
