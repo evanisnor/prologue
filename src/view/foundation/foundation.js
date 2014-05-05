@@ -1,10 +1,10 @@
 define(
     ['ractive',
-     'text!view/main/main.html',
-     'css!view/main/main.css'
+     'text!view/foundation/foundation.html',
+     'css!view/foundation/foundation.css'
     ],
 
-    function (Ractive, MainTemplate) {
+    function (Ractive, FoundationTemplate) {
 
         var view = function (element) {
             this.element = element;
@@ -13,22 +13,22 @@ define(
         };
 
         view.prototype.onLoaded = function () {
-            console.log('Loaded: Main');
+            console.log('Loaded: Foundation');
         };
         
         view.prototype.onSwitchedTo = function () {
-            console.log('Switched to: Main');
+            console.log('Switched to: Foundation');
         };
 
         view.prototype.onLeaving = function () {
-            console.log('Leaving: Main');
+            console.log('Leaving: Foundation');
         };
 
         view.prototype.render = function () {
-            console.log('> Rendering: Main');
+            console.log('> Rendering: Foundation');
             var ractive = new Ractive({
                 el: this.element,
-                template: MainTemplate
+                template: FoundationTemplate
             });
 
         };

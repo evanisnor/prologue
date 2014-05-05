@@ -34,7 +34,7 @@ requirejs.config({
 
 requirejs(
     ['routes',
-     'css!index.css',
+     'index',
      'domReady!'
     ],
 

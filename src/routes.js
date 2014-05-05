@@ -4,18 +4,24 @@ define(
     function (Router) {
         var router = new Router();
 
-        router.addRoute('main', 'view/main/main',
+        router.addRoute('home', 'view/home/home',
             {
                 isDefault: true
             }
         );
 
-        router.addRoute('secondary', 'view/secondary/secondary',
+        router.addRoute('documentation', 'view/documentation/documentation',
             {
                 preFetchView: false,
                 onFetchCallback: function() {
-                    console.log('SECONDARY FETCHED');
+                    console.log('Documentation fetched');
                 }
+            }
+        );
+
+        router.addRoute('foundation', 'view/foundation/foundation',
+            {
+                preFetchView: false
             }
         );
 

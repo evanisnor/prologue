@@ -16,3 +16,65 @@
 #app-view.loading {
     opacity: 0;
 }
+
+
+/* * * CUSTOM CSS * * */
+/* * * CUSTOM CSS * * */
+/* * * CUSTOM CSS * * */
+/* * * CUSTOM CSS * * */
+
+body {
+    margin: 0;
+    padding: 0;
+
+    text-align: center;
+}
+
+/*
+ * Banner style
+ */
+#banner {
+    width: 100%;
+    height: 25em;
+
+    background-color: #cccccc;
+}
+
+#banner #text {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+}
+
+/*
+ * Menu style
+ */
+#menu {
+    width: 100%;
+    background-color: #aaaaaa;
+}
+
+#menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#menu ul li {
+    display: inline-block;
+    padding: 1em;
+}
+
+#menu a {
+    text-decoration: none;
+    color: #000000;
+}
+
+#menu a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#menu li.active {
+    background-color: #b3b3b3;
+}

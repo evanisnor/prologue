@@ -2,11 +2,29 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Prologue: Single-page apps made easy.</title>
+    <title>Prologue: Single-page apps made easy</title>
     <meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 <body>
+    <div id="banner">
+        <div id="text">
+            <div id="title">prologue</div>
+            <div id="subtext">Single-page apps made easy</div>
+        </div>
+    </div>
+
+    <div id="menu">
+        <ul>
+            <li><a href="#">home</a></li>
+            <li><a href="#documentation">documentation</a></li>
+            <li><a href="#foundation">foundation</a></li>
+            <li><a href="http://github.com/leadhead9/prologue" target="_blank">source</a></li>
+        </ul>
+    </div>
+
+    <!-- Content of this element will change based on the hash -->
     <div id="app-view"></div>
+
     <script type="text/javascript" data-main="app.js" src="bower_components/requirejs/require.js"></script>
 </body>
 </html>
