@@ -1,7 +1,7 @@
 define(
     ['ractive',
-     'text!root.html',
-     'css!root.css'
+     'text!view/root/root.html',
+     'css!view/root/root.css'
     ],
 
     function (Ractive, RootTemplate) {
