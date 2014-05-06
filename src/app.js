@@ -27,7 +27,8 @@ requirejs.config({
     ],
     map: {
         '*': {
-            'css': 'bower_components/require-css/css'
+            'css': 'bower_components/require-css/css',
+            'less': 'bower_components/require-less/less',
         }
     }
 });
@@ -40,7 +41,6 @@ requirejs(
     function (Root) {
         var root = new Root('body');
         root.onLoaded();
-        root.render();
         require(['routes']);
     }
 );
