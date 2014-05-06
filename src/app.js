@@ -27,8 +27,7 @@ requirejs.config({
     ],
     map: {
         '*': {
-            'css': 'bower_components/require-css/css',
-            'less': 'bower_components/require-less/less',
+            'css': 'bower_components/require-css/css'
         }
     }
 });

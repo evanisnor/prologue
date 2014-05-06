@@ -39,6 +39,18 @@ module.exports = function(grunt) {
                 }
             }
         },
+        less: {
+            options: {
+                cleancss: true,
+                compress: true
+            },
+            files: {
+                expand: true,
+                cwd: 'src',
+                src: ['*.less'],
+                ext: '.css'
+            }
+        },
         shell: {
             'bower-install': {
                 options: {
@@ -83,7 +95,7 @@ module.exports = function(grunt) {
     grunt.registerTask(
         'build', 
         'Compiles all of the assets and copies the files to the build directory.', 
-        [ 'jshint:src', 'clean:build', 'copy', 'requirejs:compile', 'shell:bower-install' ]
+        [ 'jshint:src', 'less', 'clean:build', 'copy', 'requirejs:compile', 'shell:bower-install' ]
     );
 
     grunt.registerTask(
